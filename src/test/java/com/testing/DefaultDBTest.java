@@ -15,6 +15,7 @@ public class DefaultDBTest {
 
     @Test
     public void checkMessageEndpoint() {
+        RestAssured.baseURI = "http://localhost:8080";
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("id", "OK")
@@ -27,6 +28,7 @@ public class DefaultDBTest {
 
     @Test
     public void checkMessageEndpointMissingHeader() {
+        RestAssured.baseURI = "http://localhost:8080";
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body("{\"db\":\"Redis\"}")
@@ -38,6 +40,7 @@ public class DefaultDBTest {
 
     @Test
     public void checkMessageEndpointWrongHeader() {
+        RestAssured.baseURI = "http://localhost:8080";
         Response response = RestAssured.given()
                 .header("id", "NOK")
                 .header("Content-Type", "application/json")
