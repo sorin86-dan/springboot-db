@@ -1,7 +1,6 @@
-#Run first 'mvn package' to generate the jar file
+#Run first 'mvn package spring-boot:repackage' to generate the jar file and copy file in Dockerfile folder
 
-FROM openjdk:11-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} db.jar
-ENTRYPOINT ["java","-jar","/db.jar"]
+FROM openjdk:11
+COPY springboot-db-1.0-SNAPSHOT.jar db.jar
+ENTRYPOINT ["java","-jar","db.jar"]
 EXPOSE 8080
