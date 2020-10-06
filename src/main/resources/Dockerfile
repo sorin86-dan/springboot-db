@@ -3,4 +3,4 @@
 FROM openjdk:11
 COPY springboot-db-1.0-SNAPSHOT.jar db.jar
 ENTRYPOINT ["java","-jar","db.jar"]
-EXPOSE 8080
+EXPOSE 8082

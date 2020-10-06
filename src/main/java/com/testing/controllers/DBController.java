@@ -19,10 +19,18 @@ public class DBController {
     @Autowired
     DBService dbService;
 
-    @PostMapping(value = "/db-message")
+    @PostMapping(value = "/get-db-message")
     public ResponseEntity getMessage(@RequestHeader("id")String id, @RequestBody String body) throws IOException, URISyntaxException {
         if(!StringUtils.isEmpty(id) && id.equals("OK")) {
             return dbService.retrieveDataFromDb(body);
+        }
+        return new ResponseEntity("Authorization failed", HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping(value = "/set-db-message")
+    public ResponseEntity setMessage(@RequestHeader("id")String id, @RequestBody String body) throws IOException, URISyntaxException {
+        if(!StringUtils.isEmpty(id) && id.equals("OK")) {
+            return dbService.setDataToDb(body);
         }
         return new ResponseEntity("Authorization failed", HttpStatus.UNAUTHORIZED);
     }
