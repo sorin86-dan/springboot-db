@@ -6,6 +6,7 @@ import com.testing.utils.RedisCache;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
@@ -18,6 +19,9 @@ public class DBService {
         var jsonBody = new ObjectMapper();
         var dbObject = jsonBody.readValue(body, DBObject.class);
         var message = redis.get("message");
+        if (StringUtils.isEmpty(message)) {
+            message = "The chosen database is: ";
+        }
         var responseBody = jsonBody.writeValueAsString(message + dbObject.getDb());
 
         return new ResponseEntity(responseBody, HttpStatus.OK);
