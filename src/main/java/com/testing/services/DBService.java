@@ -17,7 +17,7 @@ public class DBService {
     @Value("${redis.ip.address:localhost}")
     private String redisIpAddress;
 
-    private RedisCache redis = new RedisCache(redisIpAddress, 6378);
+    private RedisCache redis = new RedisCache(redisIpAddress, 6379);
 
     public ResponseEntity retrieveDataFromDb (String body) throws IOException {
         var jsonBody = new ObjectMapper();
