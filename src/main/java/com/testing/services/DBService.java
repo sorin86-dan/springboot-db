@@ -14,10 +14,7 @@ import java.io.IOException;
 @Service
 public class DBService {
 
-//    @Value("${redis.ip.address:localhost}")
-//    private String redisIpAddress;
-//
-//    private RedisCache redis = new RedisCache(redisIpAddress, 6379);
+//    private RedisCache redis = new RedisCache("localhost", 6379);
     private RedisCache redis = new RedisCache("172.0.0.4", 6379);
 
     public ResponseEntity retrieveDataFromDb (String body) throws IOException {
