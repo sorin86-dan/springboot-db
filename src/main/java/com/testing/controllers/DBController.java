@@ -21,7 +21,7 @@ public class DBController {
 
     @PostMapping(value = "/get-db-message")
     public ResponseEntity getMessage(@RequestHeader("id")String id, @RequestBody String body) throws IOException, URISyntaxException {
-        if(!StringUtils.isEmpty(id) && id.equals("OK")) {
+        if(StringUtils.hasLength(id) && id.equals("OK")) {
             return dbService.retrieveDataFromDb(body);
         }
         return new ResponseEntity("Authorization failed", HttpStatus.UNAUTHORIZED);
@@ -29,7 +29,7 @@ public class DBController {
 
     @PostMapping(value = "/set-db-message")
     public ResponseEntity setMessage(@RequestHeader("id")String id, @RequestBody String body) throws IOException, URISyntaxException {
-        if(!StringUtils.isEmpty(id) && id.equals("OK")) {
+        if(StringUtils.hasLength(id) && id.equals("OK")) {
             return dbService.setDataToDb(body);
         }
         return new ResponseEntity("Authorization failed", HttpStatus.UNAUTHORIZED);
