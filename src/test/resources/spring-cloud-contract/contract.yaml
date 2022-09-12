@@ -1,0 +1,4 @@
+request:
+  method: GET
+  url: /set-db-message
+  body:

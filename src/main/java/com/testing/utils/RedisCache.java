@@ -18,4 +18,7 @@ public class RedisCache {
         jedis.set(key, value);
     }
 
+    public void delete(String key) {
+        jedis.del(key);
+    }
 }

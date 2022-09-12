@@ -7,6 +7,8 @@ import au.com.dius.pact.provider.junitsupport.Consumer;
 import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.State;
 import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
+import com.testing.utils.RedisCache;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +25,13 @@ public class PactProviderTest {
         context.setTarget(new HttpTestTarget("localhost", 8082));
     }
 
+    @AfterEach
+    void clean() {
+        RedisCache redis = new RedisCache("127.0.0.1", 6379);
+        redis.delete("db");
+        redis.delete("message");
+    }
+
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
     void pactVerificationTestTemplate(PactVerificationContext context) {
@@ -37,4 +46,13 @@ public class PactProviderTest {
 
     @State("a valid request to set data from DB")
     public void setDBDataState() {}
+
+    @State("a request to get data from DB with invalid id")
+    public void getDbDataInvalidIdState() {}
+
+    @State("a request to get data from DB with empty id")
+    public void getDBDataEmptyIdState() {}
+
+    @State("a valid request to get data from DB")
+    public void getDBDataState() {}
 }
