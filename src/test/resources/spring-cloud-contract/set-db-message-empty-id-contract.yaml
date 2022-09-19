@@ -1,0 +1,12 @@
+request:
+  method: POST
+  url: /set-db-message
+  body:
+    message: "Baza de date aleasa: "
+  headers:
+    Content-Type: application/json
+    id: ""
+response:
+  status: 401
+  body: "Authorization failed"
+
