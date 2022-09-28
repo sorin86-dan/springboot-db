@@ -40,11 +40,19 @@
                 <version>3.1.4</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <baseClassForTests>
-                        com.testing.contracts.SpringCloudContractProviderTest
-                    </baseClassForTests>
                     <testFramework>JUNIT5</testFramework>
+                    <packageWithBaseClasses>com.testing.scc</packageWithBaseClasses>
+                    <baseClassForTests>com.testing.scc.SCCTestGenerator</baseClassForTests>
+                    <contractsDirectory>src/test/resources/contracts</contractsDirectory>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-starter-contract-verifier</artifactId>
+                        <version>3.1.4</version>
+                        <scope>compile</scope>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
