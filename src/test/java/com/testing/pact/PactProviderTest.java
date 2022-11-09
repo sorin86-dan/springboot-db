@@ -47,6 +47,9 @@ public class PactProviderTest {
     @State("a valid request to set data from DB")
     public void setDBDataState() {}
 
+    @State("a request to set data from DB with invalid body")
+    public void setDbDataInvalidBodyState() {}
+
     @State("a request to get data from DB with invalid id")
     public void getDbDataInvalidIdState() {}
 
@@ -55,4 +58,7 @@ public class PactProviderTest {
 
     @State("a valid request to get data from DB")
     public void getDBDataState() {}
+
+    @State("a request to get data from DB with invalid body")
+    public void getDbDataInvalidBodyState() {}
 }

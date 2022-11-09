@@ -26,7 +26,11 @@ public class DBService {
         if (StringUtils.isBlank(message)) {
             message = "The chosen database is: ";
         }
-        var responseBody = jsonBody.writeValueAsString(message + dbObject.getDb()).replace("\"", "");
+        var responseBody = jsonBody.writeValueAsString("Missing 'db' field!").replace("\"", "");
+
+        if(dbObject.getDb() != null) {
+            responseBody = jsonBody.writeValueAsString(message + dbObject.getDb()).replace("\"", "");
+        }
 
         return new ResponseEntity(responseBody, HttpStatus.OK);
     }
@@ -34,9 +38,14 @@ public class DBService {
     public ResponseEntity setDataToDb (String body) throws IOException {
         var jsonBody = new ObjectMapper();
         var dbObject = jsonBody.readValue(body, DBObject.class);
-        redis.put("message", dbObject.getMessage());
+        var responseBody = "Missing 'message' field!";
 
-        return new ResponseEntity("Message updated successfully!", HttpStatus.OK);
+        if(dbObject.getMessage() != null) {
+            redis.put("message", dbObject.getMessage());
+            responseBody = "Message updated successfully!";
+        }
+
+        return new ResponseEntity(responseBody, HttpStatus.OK);
     }
 
 }

@@ -17,7 +17,6 @@ import org.springframework.web.context.WebApplicationContext;
 @DirtiesContext
 @AutoConfigureMessageVerifier
 public class SCCTestGenerator {
-
     @Autowired
     private DBController dbController;
 
