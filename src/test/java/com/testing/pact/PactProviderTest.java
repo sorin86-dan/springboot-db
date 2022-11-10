@@ -6,7 +6,7 @@ import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvide
 import au.com.dius.pact.provider.junitsupport.Consumer;
 import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.State;
-import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
+import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import com.testing.utils.RedisCache;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,12 +17,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Provider("SpringBootDB")
 @Consumer("SpringBootAuth")
-@PactFolder("src/test/resources/pact")
+@PactBroker(url = "http://localhost:9292/")
 public class PactProviderTest {
 
     @BeforeEach
     void setUp(PactVerificationContext context) {
         context.setTarget(new HttpTestTarget("localhost", 8082));
+        System.setProperty("pact.verifier.publishResults", "true");
     }
 
     @AfterEach
